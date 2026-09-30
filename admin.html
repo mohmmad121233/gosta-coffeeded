@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>لوحة تحكم الإدارة الكاملة | Gosta Coffee</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+
+<header>
+  <b>⚙️ إدارة جوستا كافيه - لوحة المدير الشاملة</b>
+  <a href="index (1).html" class="btn alt" style="color:#F5F0E1;border-color:#F5F0E1;padding:6px 14px;font-size:.9rem">⬅️ رجوع لموقع الزباين</a>
+</header>
+
+<nav>
+  <a href="#stats">الملخص</a>
+  <a href="#menu-control">المنيو والأسعار</a>
+  <a href="#attendance">حضور الدوام</a>
+  <a href="#shifts">جدول المناوبات</a>
+  <a href="#inventory">جرد المخزون</a>
+  <a href="#performance">الأداء والحوافز</a>
+  <a href="#points-control">نقاط الزباين</a>
+</nav>
+
+<!-- الملخص العام -->
+<section id="stats">
+  <h2>نظرة عامة والتقارير</h2>
+  <div class="card stat-grid">
+    <div><b id="totalOrders">0</b>الطلبات اليومية</div>
+    <div><b id="totalStaffCount">0</b>الموظفين على رأس العمل</div>
+  </div>
+</section>
+
+<!-- إدارة المنيو والأسعار -->
+<section id="menu-control">
+  <h2>إدارة المنيو (الأسعار والأصناف)</h2>
+  <div class="card">
+    <h3 style="font-size:1.1rem;margin-bottom:8px;color:var(--g)">إضافة صنف جديد</h3>
+    <input id="newItmName" placeholder="اسم الصنف (مثال: كورتادو)">
+    <input id="newItmPrice" type="number" step="0.25" placeholder="السعر (بالدينار)">
+    <select id="newItmCat">
+      <option>مشروبات ساخنة</option>
+      <option>مشروبات باردة</option>
+      <option>حلويات</option>
+    </select>
+    <button id="addItmBtn">إضافة الصنف للمنيو</button>
+  </div>
+  <div class="card">
+    <h3 style="font-size:1.1rem;margin-bottom:8px;color:var(--g)">الأصناف الحالية</h3>
+    <div id="adminMenuList"></div>
+  </div>
+</section>
+
+<!-- الحضور والغياب مع GPS -->
+<section id="attendance">
+  <h2>إدارة الحضور والغياب (بصمة GPS)</h2>
+  <div class="card">
+    <input id="stName" placeholder="اسم الموظف (مثال: أحمد الباريستا)">
+    <button id="checkInBtn">تسجيل حضور (فحص نطاق الفرع GPS)</button>
+    <div id="staffList" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<!-- جدول المناوبات والوردياّت -->
+<section id="shifts">
+  <h2>جدول المناوبات والوردياّت</h2>
+  <div class="card">
+    <input id="shiftEmp" placeholder="اسم الموظف">
+    <select id="shiftTime">
+      <option>شفت صباحي (8 ص - 4 م)</option>
+      <option>شفت مسائي (4 م - 12 ص)</option>
+    </select>
+    <button id="addShiftBtn">تعيين الشفت</button>
+    <div id="shiftList" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<!-- جرد المخزون والمواد النفاذة والتالفة -->
+<section id="inventory">
+  <h2>جرد المخزون والمواد</h2>
+  <div class="card">
+    <input id="invItem" placeholder="اسم المادة (حليب، بن، سكر...)">
+    <input id="invQty" type="number" placeholder="الكمية المتبقية">
+    <button id="addInvBtn">إضافة للمخزون</button>
+    <div id="invList" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<!-- تقييم الأداء والحوافز -->
+<section id="performance">
+  <h2>تقييم الأداء والحوافز</h2>
+  <div class="card">
+    <input id="perfEmp" placeholder="اسم الموظف">
+    <select id="perfRate">
+      <option value="ممتاز 🌟">ممتاز 🌟</option>
+      <option value="جيد جداً 👍">جيد جداً 👍</option>
+      <option value="يحتاج تحسين ⚠️">يحتاج تحسين ⚠️</option>
+    </select>
+    <input id="perfBonus" type="number" placeholder="قيمة الحافز (د.أ)">
+    <button id="savePerfBtn">حفظ التقييم والحافز</button>
+    <div id="perfList" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<!-- إدارة نقاط الزباين -->
+<section id="points-control">
+  <h2>إدارة نقاط الزباين</h2>
+  <div class="card">
+    <p style="color:var(--mut);font-size:.9rem;margin-bottom:8px">أدخل كود الزبون (مثال: GOS-XXXXX)</p>
+    <input id="targetCode" placeholder="كود الزبون">
+    <input id="targetPoints" type="number" placeholder="عدد النقاط (مثال: 50 أو -20)">
+    <div class="row" style="gap:10px">
+      <button id="addPtsBtn" style="flex:1">إضافة نقاط</button>
+      <button id="subPtsBtn" class="alt" style="flex:1">سحب نقاط</button>
+    </div>
+    <p id="clientInfoResult" style="margin-top:10px;font-weight:600;color:var(--g2)"></p>
+  </div>
+</section>
+
+<div id="toast"></div>
+<script src="admin-script.js"></script>
+</body>
+</html>
